@@ -36,7 +36,7 @@ Poängsätt hur allvarligt det är om funktionen går fel i produktion.
 - 2: Användare får fel data eller delvis avbrott, påverkar affärskritiska flöden
 - 3: Systemet blir i praktiken oanvändbart eller kritisk data saknas
 
-Kodexempel (risk):
+**Kodexempel (risk):**
 
 Risk 0 (intern helper, ingen påverkan):
 
