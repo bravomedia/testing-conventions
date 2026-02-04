@@ -81,7 +81,7 @@ Poängsätt hur sannolikt det är att funktionen går sönder p.g.a. kod- eller 
 - 2: Flera format/regler, krångligare parsing, flera beroenden
 - 3: Komplex parsing/transformering, många beroenden, felhantering eller edge cases är vanliga
 
-Kodexempel (komplexitet):
+**Kodexempel (komplexitet):**
 
 Komplexitet 0 (enkel logik):
 
