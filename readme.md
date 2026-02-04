@@ -23,6 +23,7 @@ Gäller alla funktioner, jobb eller tjänster där fel påverkar användare, dat
 - Idempotens = Om jag kör en funktion en gång och den producerar ett resultat. Då skall jag kunna köra den funktionen igen, utan att det påverkar den föregående körningen. Exempel:
 
 // Importera en produkt till webbsidan. Det är en slickepott med id = 1 som kostar 100 kr.
+
 **importProductToWebsite(1, "slickepott", 100)**
 
 Om jag kör den här funktionen flera gånger så skall det inte skapas flera slickepottar. Det skall bara skapas en och oavsett hur många gånger jag kör funktionen så skall det alltid resultera i samma produkt som importerades första gången funktionen kördes. Jag är fullt medveten om att funktionen är krystad och aldrig skulle skrivas så i verkligheten. Men den är skriven så nu för att exemplifiera vad ordet Idempotens betyder.
