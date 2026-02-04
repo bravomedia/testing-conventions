@@ -69,7 +69,7 @@ Poängsätt hur sannolikt det är att funktionen går sönder p.g.a. kod- eller 
 ### Begrepp
 
 - Branching = koden kan ta flera olika vägar beroende på om något är sant eller falskt (Se exempel **komplexitet 1**).
-- Grenar =
+- Grenar = exempelvis kod inuti en if-sats
 
 Kodexempel (komplexitet):
 
