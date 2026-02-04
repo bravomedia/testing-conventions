@@ -2,7 +2,7 @@
 
 ## Om du använder wordpress
 
-Skippa denna guide. Det är ingen idé att testa wordpress eftersom det är slöseri med tid.
+Skippa denna guide om kunden du arbetar med är insignifikant sett till hur mycket vi tjänar på dem. Tänk på att testning i wordpress inte är något som premieras i wordpress-communityn. Därför är dokumentation för testning i wordpress sparsmakad.
 
 ## Syfte
 
@@ -70,6 +70,16 @@ Poängsätt hur sannolikt det är att funktionen går sönder p.g.a. kod- eller 
 
 - Branching = koden kan ta flera olika vägar beroende på om något är sant eller falskt (Se exempel **komplexitet 1**).
 - Grenar = exempelvis kod inuti en if-sats
+- Parsing = (Se exempel **komplexitet 2**)
+- Edge case = Något som inte borde hända men som mycket väl kan göra det om tillräckligt många planeter står i linje. Exempelvis en funktion som delar a med b (a / b) där b aldrig skall KUNNA vara 0, men som blir det ändå om något fantastiskt händer med b innan den används i divisionen. Att dela på 0 kan i vissa språk orsaka totala krascher.
+- Validering = Om variabeln a = "text" säkerställ då att a är en sträng. typeof a == 'string'. Säkerställ att något är av den typ eller har en form som du anser att den skall ha.
+- Regression = Något som tidigare har fungerat och som inte längre gör det. Det har skett en regression.
+- Idempotens = Om jag kör en funktion en gång och den producerar ett resultat. Då skall jag kunna köra den funktionen igen, utan att det påverkar den föregående körningen. Exempel:
+
+// Importera en produkt till webbsidan. Det är en slickepott med id = 1 som kostar 100 kr.
+importProductToWebsite(1, "slickepott", 100)
+
+Om jag kör den här funktionen flera gånger så skall det inte skapas flera slickepottar. Det skall bara skapas en och oavsett hur många gånger jag kör funktionen så skall det alltid resultera i samma produkt som importerades första gången funktionen kördes. Jag är fullt medveten om att funktionen är krystad och aldrig skulle skrivas så i verkligheten. Men den är skriven så nu för att exemplifiera vad ordet Idempotens betyder.
 
 Kodexempel (komplexitet):
 
@@ -100,8 +110,8 @@ Komplexitet 2 (flera regler + parsing):
 ```js
 function normalizeRow(row) {
     if ((row.id && typeof row.id == 'string') &&
-        (typeof row.price == 'string') &&
-        (typeof row.date == 'string')
+        (row.price && typeof row.price == 'string') &&
+        (row.date && typeof row.date == 'string')
     ) {
         return {
             id: row.id.trim(),
@@ -161,7 +171,12 @@ Total | Måste testas? | Minsta krav
 - Risk = 0 och Komplexitet <= 1
 - Ren refaktor utan beteendeförändring (lint/format räcker)
 
-## Definitioner av testtyper (konkret)
+## Specifika definitioner av testtyper
+
+### Se den här filen för konkreta exempel på tester
+[testing-examples.js](testing-examples.js)
+
+Det är väldigt viktigt att vi har en gemensam syn på vad tester är. Det finns olika sorters tester som fyller olika syften och det är viktigt att vi kan prata med varandra med samma förståelse för vad det är för typ av test vi pratar om.
 
 ### Enhetstest
 
@@ -173,6 +188,14 @@ Exempel: En parserfunktion returnerar rätt resultat för ett givet input. add(2
 Kör funktionen med sina verkliga beroenden (databas, filsystem, köer, externa tjänster mockade vid behov). Att "mocka" innebär att skapa en fejkversion av ett verkligt beroende. Exempelvis så kan man mocka en databasanslutning och säga åt den att returnera vissa fasta värden för att testa resten av flödet.
 
 Exempel: Kör ett dataimportjobb mot en testdatabas och kolla att data sparas rätt.
+
+### Interaktionstest
+
+Testar en frontend som en användare genom att interagera med UI (klick, skriv, navigera) och verifiera att rätt UI visas. Ofta körs detta i en riktig webbläsare.
+Exempel: Användaren fyller i formuläret och ser en bekräftelse, eller klickar “Lägg i kundvagn” och ser rätt antal.
+
+Det finns inget kodexempel för detta ännu men här är en länk: [Playwright – Writing tests](https://playwright.dev/docs/writing-tests)
+ 
 
 ### Regressionstest
 
