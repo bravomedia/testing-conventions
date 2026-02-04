@@ -208,7 +208,7 @@ Exempel: Samma importfil ska ge samma antal poster och samma fältvärden som ti
 
 Säkerställer att samma operation kan köras flera gånger utan dubletter eller felaktiga ändringar.
 Hur: Kör samma jobb två gånger och kolla att data är oförändrad efter andra körningen.
-Exempel: Återkörning av en import ska inte skapa dubbla rader eller driva befintliga värden.
+Exempel: Återkörning av en import ska inte skapa dubbla rader eller ändra befintliga värden.
 
 ## Underlag för "klart", när är ett test färdigt?
 
