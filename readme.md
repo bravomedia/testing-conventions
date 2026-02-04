@@ -10,7 +10,7 @@ Ett enkelt och rakt sätt att avgöra när vi måste testa och vilka testtyper s
 
 ## Omfattning
 
-Gäller alla funktioner, jobb eller tjänster där fel påverkar användare, datakvalitet eller verksamheten. Detta är projektoberoende och bör kunna appliceras på alla projekt som inte kör wordpress eller liknande ramverk som vi anser är opassande för komplexa lösningar.
+Gäller alla funktioner, jobb eller tjänster där fel påverkar användare, datakvalitet eller kundens verksamhet. Detta är projektoberoende och bör kunna appliceras på alla projekt som inte kör wordpress eller liknande ramverk som vi anser är opassande för komplexa lösningar.
 
 ## Steg 1: Poängsätt risk (0-3)
 
