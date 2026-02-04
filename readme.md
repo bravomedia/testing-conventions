@@ -12,6 +12,21 @@ Ett enkelt och rakt sätt att avgöra när vi måste testa och vilka testtyper s
 
 Gäller alla funktioner, jobb eller tjänster där fel påverkar användare, datakvalitet eller kundens verksamhet. Detta är projektoberoende och bör kunna appliceras på alla projekt som inte kör wordpress eller liknande ramverk som vi anser är opassande för komplexa lösningar.
 
+## Begrepp
+
+- Branching = koden kan ta flera olika vägar beroende på om något är sant eller falskt (Se exempel **komplexitet 1**).
+- Grenar = exempelvis kod inuti en if-sats
+- Parsing = (Se exempel **komplexitet 2**)
+- Edge case = Något som inte borde hända men som mycket väl kan göra det om tillräckligt många planeter står i linje. Exempelvis en funktion som delar a med b (a / b) där b aldrig skall KUNNA vara 0, men som blir det ändå om något fantastiskt händer med b innan den används i divisionen. Att dela på 0 kan i vissa språk orsaka totala krascher.
+- Validering = Om variabeln a = "text" säkerställ då att a är en sträng. typeof a == 'string'. Säkerställ att något är av den typ eller har en form som du anser att den skall ha.
+- Regression = Något som tidigare har fungerat och som inte längre gör det. Det har skett en regression.
+- Idempotens = Om jag kör en funktion en gång och den producerar ett resultat. Då skall jag kunna köra den funktionen igen, utan att det påverkar den föregående körningen. Exempel:
+
+// Importera en produkt till webbsidan. Det är en slickepott med id = 1 som kostar 100 kr.
+importProductToWebsite(1, "slickepott", 100)
+
+Om jag kör den här funktionen flera gånger så skall det inte skapas flera slickepottar. Det skall bara skapas en och oavsett hur många gånger jag kör funktionen så skall det alltid resultera i samma produkt som importerades första gången funktionen kördes. Jag är fullt medveten om att funktionen är krystad och aldrig skulle skrivas så i verkligheten. Men den är skriven så nu för att exemplifiera vad ordet Idempotens betyder.
+
 ## Steg 1: Poängsätt risk (0-3)
 
 Poängsätt hur allvarligt det är om funktionen går fel i produktion.
@@ -65,21 +80,6 @@ Poängsätt hur sannolikt det är att funktionen går sönder p.g.a. kod- eller 
 - 1: Normal logik, lite branching, begränsade beroenden
 - 2: Flera format/regler, krångligare parsing, flera beroenden
 - 3: Komplex parsing/transformering, många beroenden, felhantering eller edge cases är vanliga
-
-### Begrepp
-
-- Branching = koden kan ta flera olika vägar beroende på om något är sant eller falskt (Se exempel **komplexitet 1**).
-- Grenar = exempelvis kod inuti en if-sats
-- Parsing = (Se exempel **komplexitet 2**)
-- Edge case = Något som inte borde hända men som mycket väl kan göra det om tillräckligt många planeter står i linje. Exempelvis en funktion som delar a med b (a / b) där b aldrig skall KUNNA vara 0, men som blir det ändå om något fantastiskt händer med b innan den används i divisionen. Att dela på 0 kan i vissa språk orsaka totala krascher.
-- Validering = Om variabeln a = "text" säkerställ då att a är en sträng. typeof a == 'string'. Säkerställ att något är av den typ eller har en form som du anser att den skall ha.
-- Regression = Något som tidigare har fungerat och som inte längre gör det. Det har skett en regression.
-- Idempotens = Om jag kör en funktion en gång och den producerar ett resultat. Då skall jag kunna köra den funktionen igen, utan att det påverkar den föregående körningen. Exempel:
-
-// Importera en produkt till webbsidan. Det är en slickepott med id = 1 som kostar 100 kr.
-importProductToWebsite(1, "slickepott", 100)
-
-Om jag kör den här funktionen flera gånger så skall det inte skapas flera slickepottar. Det skall bara skapas en och oavsett hur många gånger jag kör funktionen så skall det alltid resultera i samma produkt som importerades första gången funktionen kördes. Jag är fullt medveten om att funktionen är krystad och aldrig skulle skrivas så i verkligheten. Men den är skriven så nu för att exemplifiera vad ordet Idempotens betyder.
 
 Kodexempel (komplexitet):
 
