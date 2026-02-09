@@ -235,5 +235,3 @@ Exempel: Återkörning av en import ska inte skapa dubbla rader eller ändra bef
     - Regressionstest? ja/nej
     - Idempotens-test? ja/nej
 - Länk eller notering som bevis: ************\_\_************
-
-Timmy and Fredrick was here
